@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
+<body>
+
+<div id="outer">
+    <div id="div1" class="mydiv">div1</div>
+    <div id="div2" class="mydiv">div2</div>
+    <div id="div3" class="mydiv">div3</div>
+    <div id="div4" class="mydiv">div4</div>
+    <div id="div5" class="mydiv">div5</div>
+    <div id="div6" class="mydiv">div6</div>
+</div>
+
+<p id="p1"></p>
+
+<p id="plist"></p>
+<form>
+    <input id="namefield" type="text">
+    <button id="addbutton" type="button">Add name</button>
+    <button id="removefirst" type="button">Remove first</button>
+    <button id="removelast" type="button">Remove last</button>
+
+    <!--<table frame=hsides rules=rows id="table"></table>-->
+    <table id="table" class="table"></table>
+    Price: <input id="pricefield" type="text">
+    <button id="lessthanbutton" type="button">Price less than</button>
+
+</form>
+
+
+
+<script>
+    
+document.querySelector("#outer").addEventListener('click', (ev) =>{
+    //console.log(ev.target.id);
+    document.querySelector("#p1").innerHTML = ev.target.id;
+})
+
+var cars = [
+    { id: 1, year: 1997, make: 'Ford', model: 'E350', price: 3000 },
+    { id: 2, year: 1999, make: 'Chevy', model: 'Venture', price: 4900 },
+    { id: 3, year: 2000, make: 'Chevy', model: 'Venture', price: 5000 },
+    { id: 4, year: 1996, make: 'Jeep', model: 'Grand Cherokee', price: 4799 },
+    { id: 5, year: 2005, make: 'Volvo', model: 'V70', price: 44799 }
+    ];
+
+
+var boys = ["Peter", "lars", "Ole"];
+
+drawList();
+drawTable(cars);
+
+
+document.querySelector("#addbutton").addEventListener('click', (ev) =>{
+    ev.preventDefault;
+    boys.push(document.querySelector('#namefield').value);
+
+    // draw the updated list
+    drawList();
+
+    console.log(boys);
+});
+
+document.querySelector("#removefirst").addEventListener('click', (ev) =>{
+    ev.preventDefault;
+    boys.shift();
+    drawList();
+})
+
+document.querySelector("#removelast").addEventListener('click', (ev) =>{
+    ev.preventDefault;
+    boys.pop();
+    drawList();
+})
+
+document.querySelector("#lessthanbutton").addEventListener('click', (ev) =>{
+    ev.preventDefault;
+    const enteredPrice = document.querySelector("#pricefield").value;
+    const filteredCarArray = cars.filter(car => car.price < enteredPrice);
+    
+    drawTable(filteredCarArray);
+})
+
+
+
+console.log(arrayToHtmlTable(cars));
+
+
+
+function arrayToHtmlTable(array){
+    let tableString = 
+        '<thead>' +
+            '<tr>' +
+                '<th scope="col">id</th>' +
+                '<th scope="col">Year</th>' +
+                '<th scope="col">Make</th>' +
+                '<th scope="col">Model</th>' +
+                '<th scope="col">Price</th>' +
+            '</tr>' +
+        '</thead>' +
+        '<tbody>';
+
+    array.forEach(car => {
+        tableString += '<tr>'
+            tableString += '<th scope="row">'+ car.id +'</th>'
+            tableString += '<td>'+ car.year +'</td>'
+            tableString += '<td>'+ car.make +'</td>'
+            tableString += '<td>'+ car.model +'</td>'
+            tableString += '<td>'+ car.price +'</td>'
+        tableString += '</tr>'
+    });
+
+    tableString += '</tbody>'
+
+    return tableString;
+}
+
+function drawTable(array){
+    document.querySelector("#table").innerHTML = arrayToHtmlTable(array);
+}
+
+function drawList(){
+    let htmlString = "<ul><li>";
+    htmlString += boys.join('</li><li>');
+    htmlString += "</li></ul>";
+    document.querySelector("#plist").innerHTML = htmlString;
+}
+
+</script>
+
+</body>
+
+
+</html>
+
+<style>
+    .mydiv {
+     width: 25px; 
+     height: 25px;
+     background-color:yellow; 
+     margin:1px;
+ }
+</style>

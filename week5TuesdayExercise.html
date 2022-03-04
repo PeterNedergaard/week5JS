@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="div1">div 1</div>
+<div id="div2">div 2</div>
+<div id="div3">div 3</div>
+
+<button id="button">Button</button>
+
+<div id="div4" class="mydiv">div4</div>
+<div id="div5" class="mydiv">div5</div>
+
+
+<script>
+    
+    const divList = document.querySelectorAll("div");
+
+    divList.forEach(el => {
+        el.style.color = "red";
+    });
+
+    document.querySelector("#button").addEventListener('click' , (ev) =>{
+        divList[0].style.color = "red";
+        divList[1].style.color = "green";
+        divList[2].style.color = "blue";
+    });
+
+
+</script>
+
+</body>
+
+<style>
+    .mydiv {
+     width: 25px; 
+     height: 25px;
+     background-color:yellow; 
+     margin:1px;
+ }
+</style>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body id="bd">
+
+<h1 id="head">HTML tester</h1>
+<h2 id="test">Test</h2>
+
+<div id="parent">parent
+    <div id="child1">hallo from div 1</div>
+    <div id="child2">hallo from div 2</div>
+    <div id="child3">hallo from div 3</div>
+    <div id="child4">hallo from div 4</div>
+</div>
+
+<script>
+    /*document.querySelector("#bd").addEventListener('click', (ev) => {
+        console.log("Hello from body");
+    });*/
+
+    document.querySelector("#parent").addEventListener('click', (ev) => {
+        console.log(ev.target.id);
+    });
+
+    /*document.querySelector("#child1").addEventListener('click', (ev) => {
+        console.log("Hello from child 1");
+    });*/
+
+    /*
+    document.body.style.backgroundColor = 'green';
+
+    console.log(document.querySelector("#head").style.color = "red");
+
+    document.querySelector("#head").addEventListener('click', (event) =>{
+        console.log(event);
+        
+        document.querySelector("#head").style.color = "blue"
+    });
+    */
+
+</script>
+</body>
+
+
+</html>
